@@ -5,9 +5,8 @@ import matplotlib.pyplot as plt
 import io
 import base64
 
-
 from Codes.Student_Analisis import plot_student_analysis
-
+from Codes.Class_Analisis import plot_c
 
 app = Flask(__name__)
 app.secret_key = 'Shinota'
@@ -45,23 +44,28 @@ def plot():
         flash(f'Error reading Excel files: {e}', 'error')
         return redirect(request.url)
 
-    # Process the data and generate the plot
-    plot_image = plot_student_analysis('01JCE21PMC006',qp_df, co_mapping_df)
+    # Get the student USN from the form
+    student_usn = request.form.get('student_usn')
+
+    # Check which button was clicked
+    action = request.form.get('action')
+
+    # If the "Plot Student Analysis" button was clicked
+    if action == 'plot_student':
+        if not student_usn:
+            flash('Student USN is required for Student Analysis', 'error')
+            return redirect(request.url)
+        
+        # Plot student analysis
+        plot_image = plot_student_analysis(student_usn, qp_df, co_mapping_df)
+
+    # If the "Plot Class Result" button was clicked
+    elif action == 'plot_class':
+        # Plot class analysis
+        plot_image = plot_c(qp_df, co_mapping_df)
 
     # Return the plot as a base64 image to the HTML template
     return render_template('plot.html', image_base64=plot_image)
-
-# def questionPaperAnalyser(qp_df, co_mapping_df):
-#     # Example processing - replace with your actual logic
-#     plt.figure(figsize=(6,4))
-#     plt.plot([1, 2, 3], [4, 5, 6])  # Example plot
-
-#     # Convert the plot to PNG image and base64 encode it
-#     img = io.BytesIO()
-#     plt.savefig(img, format='png')
-#     img.seek(0)
-#     plot_url = base64.b64encode(img.getvalue()).decode('utf8')
-#     return plot_url
 
 if __name__ == '__main__':
     app.run(debug=True)

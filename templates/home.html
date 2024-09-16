@@ -24,8 +24,12 @@
 
         <label for="CO_mapping">Select CO Mapping Excel file:</label>
         <input type="file" id="CO_mapping" name="CO_mapping" accept=".xlsx" required><br><br>
-        
-        <input type="submit" value="Upload and Plot">
+
+        <label for="student_usn">Enter Student USN (for Student Analysis):</label>
+        <input type="text" id="student_usn" name="student_usn" ><br><br>
+
+        <button type="submit" name="action" value="plot_student">Plot Student Analysis</button>
+        <button type="submit" name="action" value="plot_class">Plot Class Result</button>
     </form>
 </body>
 </html>
