@@ -1,11 +1,19 @@
-import CD
+from Codes import CD
 import io
 import base64
-
+import pandas as pd
 
 import matplotlib.pyplot as plt
 
-def plot_student_analysis(usno, co, cd, co_ttl, cd_ttl):
+def plot_student_analysis(usno,df,co_mapping_df):
+
+    # df = pd.read_excel(path)
+
+    
+    # co_mapping_df = pd.read_excel(co_mapping_path)
+
+    co, cd, co_ttl, cd_ttl = CD.CD_df(df,co_mapping_df)
+
     # Extract data for the given student
     student_co_scores = co[co['student_usno'] == usno].drop(columns=['student_usno']).values.flatten()
     student_cd_scores = cd[cd['student_usno'] == usno].drop(columns=['student_usno']).values.flatten()
@@ -33,7 +41,15 @@ def plot_student_analysis(usno, co, cd, co_ttl, cd_ttl):
     plt.legend()
 
     plt.tight_layout()
-    plt.show()
+    # plt.show()
+    #     # Convert the plot to PNG image and base64 encode it
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+    return plot_url
+
+
     # buf = io.BytesIO()
     # plt.savefig(buf, format='png')
     # buf.seek(0)
@@ -43,12 +59,10 @@ def plot_student_analysis(usno, co, cd, co_ttl, cd_ttl):
 # Example usage
 usno = '01JCE21PMC006'  # Provide the student usno here
 
-co, cd, co_ttl, cd_ttl = CD.CD_df()
 
 
-def p(usno):
-    plot_student_analysis(usno, co, cd, co_ttl, cd_ttl)
+# plot_student_analysis(usno)
 
-p(usno)
+
 
 
