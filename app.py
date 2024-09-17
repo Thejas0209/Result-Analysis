@@ -6,7 +6,7 @@ import io
 import base64
 
 from Codes.Student_Analysis import plot_student_analysis
-from Codes.Class_Analisis import plot_c
+from Codes.Class_Analisis import plot_Class_Analisis
 from Codes.QuestionPaperAnalyser import questionPaperAnalyser
 
 app = Flask(__name__)
@@ -63,7 +63,7 @@ def plot():
     # If the "Plot Class Result" button was clicked
     elif action == 'plot_class':
         # Plot class analysis
-        plot_image = plot_c(qp_df, co_mapping_df)
+        plot_image = plot_Class_Analisis(qp_df, co_mapping_df)
         Question_paper_plot=questionPaperAnalyser(co_mapping_df)
         images=[plot_image,Question_paper_plot]
 
