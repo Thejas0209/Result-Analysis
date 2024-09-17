@@ -26,7 +26,6 @@ def question_paper_analyser(QP_df):
     axs[1].set_title("CogonativeDomain analysis")
     axs[1].set_xlabel("Cogonative Domain")
     axs[1].set_ylabel("Number of questions")
-    plt.show()
     
     # Save the plot to a bytes buffer
     buf = io.BytesIO()

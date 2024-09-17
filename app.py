@@ -49,6 +49,8 @@ def plot():
     # Check which button was clicked
     action = request.form.get('action')
 
+    images = []  # Initialize an empty list for images
+
     # If the "Plot Student Analysis" button was clicked
     if action == 'plot_student':
         if not student_usn:
@@ -57,16 +59,19 @@ def plot():
         
         # Plot student analysis
         plot_image = plot_student_analysis(student_usn, qp_df, co_mapping_df)
+        images.append(plot_image)  # Add the plot to the images list
 
     # If the "Plot Class Result" button was clicked
     elif action == 'plot_class':
         # Plot class analysis
         plot_image = plot_class_analysis(qp_df, co_mapping_df)
-        Question_paper_plot=question_paper_analyser(co_mapping_df)
-        images=[plot_image,Question_paper_plot]
+        question_paper_plot = question_paper_analyser(co_mapping_df)
+        
+        # Add the class analysis plot and question paper plot to the images list
+        images.extend([plot_image, question_paper_plot])
 
-    # Return the plot as a base64 image to the HTML template
-    return render_template('plot.html', image_base64=images)
+    # Return the plots as base64 images to the HTML template
+    return render_template('plot.html', images=images)
 
 if __name__ == '__main__':
     app.run(debug=True)
