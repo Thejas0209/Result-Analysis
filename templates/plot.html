@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel Data Plot</title>
+    <title>Generated Plots</title>
 </head>
 <body>
-    <h2>Here is your plot:</h2>
+    <h2>Here are your plots:</h2>
 
-    <img src="data:image/png;base64,{{ image_base64 }}" alt="Generated Plot">
+    {% for image in images %}
+        <div>
+            <img src="data:image/png;base64,{{ image }}" alt="Generated Plot"><br><br>
+        </div>
+    {% endfor %}
 
-    <br><br>
     <a href="{{ url_for('home') }}">Go back</a>
 </body>
 </html>

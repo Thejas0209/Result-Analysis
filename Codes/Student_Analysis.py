@@ -1,8 +1,6 @@
 from Codes import CD
 import io
 import base64
-import pandas as pd
-
 import matplotlib.pyplot as plt
 
 def plot_student_analysis(usno, df, co_mapping_df):

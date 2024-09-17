@@ -70,7 +70,6 @@ def plot_c(df, co_mapping_df):
     # Adjust layout and display the plot
     plt.tight_layout()
 
-
     # Convert the plot to PNG image and base64 encode it
     img = io.BytesIO()
     plt.savefig(img, format='png')

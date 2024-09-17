@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 import io
 import base64
 
-from Codes.Student_Analisis import plot_student_analysis
+from Codes.Student_Analysis import plot_student_analysis
 from Codes.Class_Analisis import plot_c
+from Codes.QuestionPaperAnalyser import questionPaperAnalyser
 
 app = Flask(__name__)
 app.secret_key = 'Shinota'
@@ -63,9 +64,11 @@ def plot():
     elif action == 'plot_class':
         # Plot class analysis
         plot_image = plot_c(qp_df, co_mapping_df)
+        Question_paper_plot=questionPaperAnalyser(co_mapping_df)
+        images=[plot_image,Question_paper_plot]
 
     # Return the plot as a base64 image to the HTML template
-    return render_template('plot.html', image_base64=plot_image)
+    return render_template('plot.html', image_base64=images)
 
 if __name__ == '__main__':
     app.run(debug=True)
