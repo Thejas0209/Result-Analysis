@@ -6,7 +6,7 @@ import io
 import base64
 
 from Codes.Student_Analisis import plot_student_analysis
-from Codes.Class_Analisis import plot_c
+from Codes.Class_Analisis import plot_Class_Analisis
 
 app = Flask(__name__)
 app.secret_key = 'Shinota'
@@ -62,7 +62,7 @@ def plot():
     # If the "Plot Class Result" button was clicked
     elif action == 'plot_class':
         # Plot class analysis
-        plot_image = plot_c(qp_df, co_mapping_df)
+        plot_image = plot_Class_Analisis(qp_df, co_mapping_df)
 
     # Return the plot as a base64 image to the HTML template
     return render_template('plot.html', image_base64=plot_image)

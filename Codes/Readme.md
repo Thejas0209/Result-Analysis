@@ -1,5 +1,4 @@
-# Execute Student Analysys to get the seperate student analysis when usn is provided
+# Class_Analisis.py returns the overall class performance in that paper
+# Student_Analisis.py Returns the Single student Analysis 
 
-# call  plot_student_analysis(usno, df, co_mapping_df) and pass usn, qplist_df and inpu_list_df to get individual student analysys
-
-# call plot_c(df, co_mapping_df) pass qplist_df and inpu_list_df to get overall class analysis student analysys
+# DataAnalizer returns the dataFrame of the CO-CD mapped to qp_marks_list and  total_marks for CO-CD

@@ -1,48 +1,53 @@
-from Codes import CD
+# plot_student_analysis(usn_no, qp_mark_sheet_df, marks_schema):
+# input : usn_number , qp marks sheet dataframe , marks schema
+# output : buffer image containing 4 subplots 2 bar graph and 2 pie charts
+
+from Codes import DataAnalizer
 import io
 import base64
 import pandas as pd
-
 import matplotlib.pyplot as plt
 
-def plot_student_analysis(usno, df, co_mapping_df):
+
+
+def plot_student_analysis(usn_no, qp_mark_sheet_df, marks_schema):
 
     # Get CO and CD data for the student
-    cd, co, cd_ttl, co_ttl = CD.CD_df(df, co_mapping_df)
+    cognitive_domain, course_outcome, cognitive_domain_total_marks, course_outcome_total_marks = DataAnalizer.CognitiveDomain_CourseCoutcome_Analysis(qp_mark_sheet_df, marks_schema)
 
-    # Extract data for the given student
-    student_co_scores = co[co['student_usno'] == usno].drop(columns=['student_usno']).values.flatten()
-    student_cd_scores = cd[cd['student_usno'] == usno].drop(columns=['student_usno']).values.flatten()
+    # Extract Scores from the main CO, CD Dataframe
+    course_outcome_scores = course_outcome[course_outcome['student_usno'] == usn_no].drop(columns=['student_usno']).values.flatten()
+    cognitive_domain_scores = cognitive_domain[cognitive_domain['student_usno'] == usn_no].drop(columns=['student_usno']).values.flatten()
     
     # Bar Plot for CO and CD
     plt.figure(figsize=(14, 7))
 
     plt.subplot(2, 2, 1)
-    co_labels = [f'CO{idx+1}' for idx in range(len(student_co_scores))]
-    plt.bar(co_labels, student_co_scores, label='Student Scores', alpha=0.7, color='b')
-    plt.bar(co_labels, co_ttl['Total Marks'], label='Total Marks', alpha=0.3, color='g')
+    course_outcome_labels = [f'CourseOutcome{idx+1}' for idx in range(len(course_outcome_scores))]
+    plt.bar(course_outcome_labels, course_outcome_scores, label='Student Scores', alpha=0.7, color='b')
+    plt.bar(course_outcome_labels, course_outcome_total_marks['Total Marks'], label='Total Marks', alpha=0.3, color='g')
     plt.xlabel('Course Outcomes (CO)')
     plt.ylabel('Marks')
-    plt.title(f'Student {usno} CO Performance')
+    plt.title(f'Student {usn_no} CO Performance')
     plt.legend()
 
     plt.subplot(2, 2, 2)
-    cd_labels = [f'CD{idx+1}' for idx in range(len(student_cd_scores))]
-    plt.bar(cd_labels, student_cd_scores, label='Student Scores', alpha=0.7, color='b')
-    plt.bar(cd_labels, cd_ttl['Total Marks'], label='Total Marks', alpha=0.3, color='g')
+    cognitive_domain_labels = [f'CourseDomain{idx+1}' for idx in range(len(cognitive_domain_scores))]
+    plt.bar(cognitive_domain_labels, cognitive_domain_scores, label='Student Scores', alpha=0.7, color='b')
+    plt.bar(cognitive_domain_labels, cognitive_domain_total_marks['Total Marks'], label='Total Marks', alpha=0.3, color='g')
     plt.xlabel('Course Domains (CD)')
     plt.ylabel('Marks')
-    plt.title(f'Student {usno} CD Performance')
+    plt.title(f'Student {usn_no} CD Performance')
     plt.legend()
 
     # Pie Charts for CO and CD
     plt.subplot(2, 2, 3)
-    plt.pie(student_co_scores, labels=co_labels, autopct='%1.1f%%', startangle=140, colors=plt.cm.Paired.colors)
-    plt.title(f'Student {usno} CO Score Distribution')
+    plt.pie(course_outcome_scores, labels=course_outcome_labels, autopct='%1.1f%%', startangle=140, colors=plt.cm.Paired.colors)
+    plt.title(f'Student {usn_no} CO Score Distribution')
 
     plt.subplot(2, 2, 4)
-    plt.pie(student_cd_scores, labels=cd_labels, autopct='%1.1f%%', startangle=140, colors=plt.cm.Paired.colors)
-    plt.title(f'Student {usno} CD Score Distribution')
+    plt.pie(cognitive_domain_scores, labels=cognitive_domain_labels, autopct='%1.1f%%', startangle=140, colors=plt.cm.Paired.colors)
+    plt.title(f'Student {usn_no} CD Score Distribution')
 
     plt.tight_layout()
 
