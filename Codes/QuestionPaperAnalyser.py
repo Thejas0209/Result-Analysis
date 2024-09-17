@@ -4,11 +4,12 @@ import matplotlib.pyplot as plt
 import io
 import base64
 
-#Question Paper Analyser
-def questionPaperAnalyser(QP_df):
+
+def question_paper_analyser(QP_df):
     '''
+    questionPaperAnalyser(QP_df): Plots a graph for Course outCome and Cognative domain of marks 
     Input:Takes a pandas dataframe of the question paper 
-    Output:Returns the a matplot lib plt as bytes buffer
+    Output:Returns the a matplot lib plt as a image
     '''
     # Extracting the info nd storing 
     Course_Output=np.unique(QP_df['CO'].to_numpy(),return_counts=True)

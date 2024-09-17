@@ -1,21 +1,11 @@
-# CognitiveDomain_CourseCoutcome_Analysis(qp_marks_dataFrame,Marks_Schema_dataFrame):
-# input : qp_marks_dataFrame,Marks_Schema_dataFrame
-# output : returns dataFrame of CognitiveDomain_results,CourseOutcome_results,total_marks_CourseDomain,total_marks_CourseOutcome
-
-
 import pandas as pd
 
-def CognitiveDomain_CourseCoutcome_Analysis(qp_marks_dataFrame,Marks_Schema_dataFrame):
-
-
-    # Load the data from the Excel file
-    # path = r"../Data/qp_list.xlsx"
-    # df = pd.read_excel(path)
-
-    # Load the CO mapping from the Excel file
-    # co_mapping_path = r"../Data/inpu.xlsx"  # Path to your CO mapping Excel file
-    # co_mapping_df = pd.read_excel(co_mapping_path)
-
+def cognitive_domain_course_outcome_analysis(qp_marks_dataFrame,Marks_Schema_dataFrame):
+    '''
+    CognitiveDomain_CourseCoutcome_Analysis(qp_marks_dataFrame,Marks_Schema_dataFrame):
+    input : qp_marks_dataFrame,Marks_Schema_dataFrame
+    output : returns dataFrame of CognitiveDomain_results,CourseOutcome_results,total_marks_CourseDomain,total_marks_CourseOutcome
+    '''
     # Create a CO and CD mapping dictionary from the CO mapping file
     CourseOutcome_Mapping = {}
     CognitiveDomain_Mapping = {}

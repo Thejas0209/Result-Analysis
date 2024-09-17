@@ -1,17 +1,16 @@
-# plot_Class_Analisis(qp_mark_sheet_df, marks_schema): plots bar and pie chart with
-# input : give two DataFrame - > qp_mark_sheet DataFrame, marks_schema DataFrame
-# output : return's image of bar graph and pie chart as -> plot_url
-
-from Codes import DataAnalizer
-import pandas as pd
+from Codes import DataAnalyizer
 import matplotlib.pyplot as plt
 import io
 import base64
 
-# Load the CSV files
-def plot_Class_Analisis(qp_mark_sheet_df, marks_schema):
+def plot_class_analysis(qp_mark_sheet_df, marks_schema):
+    '''
+    plot_Class_Analisis(qp_mark_sheet_df, marks_schema): plots bar and pie chart for overall class course out come and analysis
+    input : give two DataFrame - > qp_mark_sheet DataFrame, marks_schema DataFrame
+    output : return's image of bar graph and pie chart as -> plot_url
+    '''
 
-    Cognitive_Domain_marks, Course_Outcome_marks, CognitiveDomain_TotalMarks, CourseOutcome_TotalMarks = DataAnalizer.CognitiveDomain_CourseCoutcome_Analysis(qp_mark_sheet_df, marks_schema)
+    Cognitive_Domain_marks, Course_Outcome_marks, CognitiveDomain_TotalMarks, CourseOutcome_TotalMarks = DataAnalyizer.cognitive_domain_course_outcome_analysis(qp_mark_sheet_df, marks_schema)
 
     # Compute the average marks per CD
     CognitiveDomain_AverageMarks = round(Cognitive_Domain_marks.drop(columns='student_usno').sum() / Cognitive_Domain_marks.shape[0])

@@ -1,13 +1,11 @@
 # Importing libraries 
 from flask import Flask, render_template, request, redirect, url_for, flash
 import pandas as pd
-import matplotlib.pyplot as plt
-import io
-import base64
 
-from Codes.Student_Analysis import plot_student_analysis
-from Codes.Class_Analisis import plot_Class_Analisis
-from Codes.QuestionPaperAnalyser import questionPaperAnalyser
+# Importing Modules
+from Codes.StudentAnalysis import plot_student_analysis
+from Codes.ClassAnalysis import plot_class_analysis
+from Codes.QuestionPaperAnalyser import question_paper_analyser
 
 app = Flask(__name__)
 app.secret_key = 'Shinota'
@@ -63,8 +61,8 @@ def plot():
     # If the "Plot Class Result" button was clicked
     elif action == 'plot_class':
         # Plot class analysis
-        plot_image = plot_Class_Analisis(qp_df, co_mapping_df)
-        Question_paper_plot=questionPaperAnalyser(co_mapping_df)
+        plot_image = plot_class_analysis(qp_df, co_mapping_df)
+        Question_paper_plot=question_paper_analyser(co_mapping_df)
         images=[plot_image,Question_paper_plot]
 
     # Return the plot as a base64 image to the HTML template

@@ -1,18 +1,17 @@
-# plot_student_analysis(usn_no, qp_mark_sheet_df, marks_schema):
-# input : usn_number , qp marks sheet dataframe , marks schema
-# output : buffer image containing 4 subplots 2 bar graph and 2 pie charts
-
-from Codes import DataAnalizer
+# Importing dependencies 
+from Codes import DataAnalyizer
 import io
 import base64
 import matplotlib.pyplot as plt
 
-
-
 def plot_student_analysis(usn_no, qp_mark_sheet_df, marks_schema):
-
+    '''
+    plot_student_analysis(usn_no, qp_mark_sheet_df, marks_schema):
+    input : usn_number , qp marks sheet dataframe , marks schema
+    output : buffer image containing 4 subplots 2 bar graph and 2 pie charts
+    '''
     # Get CO and CD data for the student
-    cognitive_domain, course_outcome, cognitive_domain_total_marks, course_outcome_total_marks = DataAnalizer.CognitiveDomain_CourseCoutcome_Analysis(qp_mark_sheet_df, marks_schema)
+    cognitive_domain, course_outcome, cognitive_domain_total_marks, course_outcome_total_marks = DataAnalyizer.cognitive_domain_course_outcome_analysis(qp_mark_sheet_df, marks_schema)
 
     # Extract Scores from the main CO, CD Dataframe
     course_outcome_scores = course_outcome[course_outcome['student_usno'] == usn_no].drop(columns=['student_usno']).values.flatten()
