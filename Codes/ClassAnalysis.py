@@ -5,10 +5,10 @@ import base64
 
 def plotClassAnalysis(mark_sheet_df, question_paper):
     '''
-    plot_Class_Analisis(mark_sheet_df, qp): plots bar and pie chart for overall class course out come and analysis
+    plot_Class_Analisis(mark_sheet_df, qp): plots bar  for overall class course out come and analysis
     input : give two DataFrame - > mark_sheet DataFrame, qp
       DataFrame
-    output : return's image of bar graph and pie chart as -> plot_url
+    output : return's image of bar graph  as -> plot_url
     '''
 
     Cognitive_Domain_marks, Course_Outcome_marks, CognitiveDomain_TotalMarks, CourseOutcome_TotalMarks = DataAnalyizer.cognitiveDomainCourseOutcomeAnalysis(mark_sheet_df, question_paper)
@@ -115,10 +115,10 @@ def plotClassAnalysis(mark_sheet_df, question_paper):
 def plotClassAnalysisPieChart(mark_sheet_df, question_paper):
 
     '''
-    plot_Class_Analisis(mark_sheet_df, qp): plots bar and pie chart for overall class course out come and analysis
+    plot_Class_AnalisisPieChart(mark_sheet_df, qp): pie chart for overall class course out come and analysis
     input : give two DataFrame - > mark_sheet DataFrame, qp
       DataFrame
-    output : return's image of bar graph and pie chart as -> plot_url
+    output : return's image of pie chart as -> plot_url
     '''
 
     Cognitive_Domain_marks, Course_Outcome_marks, CognitiveDomain_TotalMarks, CourseOutcome_TotalMarks = DataAnalyizer.cognitiveDomainCourseOutcomeAnalysis(mark_sheet_df, question_paper)
