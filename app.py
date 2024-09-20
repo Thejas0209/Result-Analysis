@@ -18,7 +18,7 @@ def home():
 # Route to handle file upload and plotting
 @app.route('/plot', methods=['POST'])
 def plot():
-    question_paper,marks_sheet  = validate(request.files,request.url)
+    marks_sheet,question_paper = validate(request.files,request.url)
     # Read the Excel files into DataFrames
     try:
         question_paper = pd.read_excel(question_paper)
@@ -42,14 +42,14 @@ def plot():
             return redirect(request.url)
         
         # Plot student analysis
-        plot_image = plotStudentAnalysis(student_usn, question_paper, marks_sheet)
+        plot_image = plotStudentAnalysis(student_usn, marks_sheet,question_paper)
         images.append(plot_image)  # Add the plot to the images list
 
     # If the "Plot Class Result" button was clicked
     elif action == 'plot_class':
         # Plot class analysis
-        plot_image = plotClassAnalysis(question_paper, marks_sheet)
-        question_paper_plot = plotQuestionPaperAnalysis(marks_sheet)
+        plot_image = plotClassAnalysis(marks_sheet,question_paper)
+        question_paper_plot = plotQuestionPaperAnalysis(question_paper)
         
         # Add the class analysis plot and question paper plot to the images list
         images.extend([plot_image, question_paper_plot])
