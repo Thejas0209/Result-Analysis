@@ -3,8 +3,7 @@ body {
     margin: 20px;
     padding: 0;
     background-color: #f9f9f9;
-    text-align: center; /* Center-aligns all text in the body */
-}
+    text-align: center; 
 h1, h2 {
     color: #333;
 }
@@ -17,12 +16,9 @@ img {
     border: 1px solid #ccc;
     padding: 10px;
     background-color: #fff;
-    display: block; /* Makes the image a block element */
-    margin: 20px auto; /* Centers the image horizontally */
 }
 p {
     color: #555;
-    margin: 0 0 20px;
 }
 a {
     display: inline-block;
