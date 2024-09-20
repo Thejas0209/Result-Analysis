@@ -4,7 +4,7 @@ import pandas as pd
 
 # Importing Modules
 from Codes.StudentAnalysis import plotStudentAnalysis
-from Codes.ClassAnalysis import plotClassAnalysis
+from Codes.ClassAnalysis import plotClassAnalysis,plotClassAnalysisPieChart
 from Codes.QuestionPaperAnalyser import plotQuestionPaperAnalysis
 from Codes.FileValidator import validate
 
@@ -50,9 +50,10 @@ def plot():
         # Plot class analysis
         plot_image = plotClassAnalysis(marks_sheet,question_paper)
         question_paper_plot = plotQuestionPaperAnalysis(question_paper)
+        qp_pie_chart = plotClassAnalysisPieChart(marks_sheet, question_paper)
         
         # Add the class analysis plot and question paper plot to the images list
-        images.extend([plot_image, question_paper_plot])
+        images.extend([plot_image, question_paper_plot, qp_pie_chart])
 
     # Return the plots as base64 images to the HTML template
     return render_template('plot.html', images=images)
