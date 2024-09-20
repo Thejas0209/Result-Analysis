@@ -1,2 +1,2 @@
-def course_outcome_analysis():
+def courseOoutcomeAnalysis():
     print("Course out come analyser")

@@ -5,24 +5,24 @@ import io
 import base64
 
 
-def question_paper_analyser(QP_df):
+def plotQuestionPaperAnalysis(question_paper):
     '''
     questionPaperAnalyser(QP_df): Plots a graph for Course outCome and Cognative domain of marks 
     Input:Takes a pandas dataframe of the question paper 
     Output:Returns the a matplot lib plt as a image
     '''
     # Extracting the info nd storing 
-    Course_Output=np.unique(QP_df['CO'].to_numpy(),return_counts=True)
-    Cogonative_Domain = np.unique([int(item) for sublist in [str(x).split(',') for x in QP_df["CD"]] for item in sublist],return_counts=True)
+    course_output=np.unique(question_paper['CO'].to_numpy(),return_counts=True)
+    cogonative_domain = np.unique([int(item) for sublist in [str(x).split(',') for x in question_paper["CD"]] for item in sublist],return_counts=True)
     
     # Ploting the graphs for COs & CDs
     fig,axs=plt.subplots(1,2)
-    axs[0].bar(Course_Output[0],Course_Output[1])
+    axs[0].bar(course_output[0],course_output[1])
     axs[0].set_title("Course outcome analysis")
     axs[0].set_xlabel("Course outcome")
     axs[0].set_ylabel("Number of questions")
 
-    axs[1].bar(Cogonative_Domain[0],Cogonative_Domain[1])
+    axs[1].bar(cogonative_domain[0],cogonative_domain[1])
     axs[1].set_title("CogonativeDomain analysis")
     axs[1].set_xlabel("Cogonative Domain")
     axs[1].set_ylabel("Number of questions")

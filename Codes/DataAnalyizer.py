@@ -1,6 +1,6 @@
 import pandas as pd
 
-def cognitive_domain_course_outcome_analysis(qp_marks_dataFrame,Marks_Schema_dataFrame):
+def cognitiveDomainCourseOutcomeAnalysis(qp_marks_dataFrame,Marks_Schema_dataFrame):
     '''
     CognitiveDomain_CourseCoutcome_Analysis(qp_marks_dataFrame,Marks_Schema_dataFrame):
     input : qp_marks_dataFrame,Marks_Schema_dataFrame
