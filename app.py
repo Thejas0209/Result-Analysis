@@ -44,7 +44,7 @@ def plot():
         # Plot student analysis
         plot_image = plotStudentAnalysis(student_usn, marks_sheet,question_paper)
         images.append(plot_image)  # Add the plot to the images list
-        return render_template('plot_student.html', images=images)
+        return render_template('StudentReport.html', images=images)
 
 
 
@@ -59,7 +59,7 @@ def plot():
         images.extend([plot_image, question_paper_plot, qp_pie_chart])
 
     # Return the plots as base64 images to the HTML template
-    return render_template('plot_class.html', images=images)
+    return render_template('ClassReport.html', images=images)
 
 if __name__ == '__main__':
     app.run(debug=True)
