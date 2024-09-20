@@ -18,8 +18,6 @@ def home():
 # Route to handle file upload and plotting
 @app.route('/plot', methods=['POST'])
 def plot():
-   
-    print("validate: ",validate(request.files,request.url))
     question_paper,marks_sheet  = validate(request.files,request.url)
     # Read the Excel files into DataFrames
     try:

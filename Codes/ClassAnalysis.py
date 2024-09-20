@@ -101,7 +101,7 @@ def plotClassAnalysis(qp_mark_sheet_df, marks_schema):
 
 
     axs[2,0].pie(ranges.values(), labels=ranges.keys(), autopct='%1.1f%%', colors=['lightcoral', 'lightyellow', 'lightblue', 'lightgreen'], startangle=140)
-    axs[2, 0].set_title('percentage of student scored marks in the range of 0-35 ,35-60, 60-80, 80-100')
+    axs[2, 0].set_title('Percentage of student scored marks in the range of 0-35 ,35-60, 60-80, 80-100')
 
     axs[2, 1].axis('off')
 
