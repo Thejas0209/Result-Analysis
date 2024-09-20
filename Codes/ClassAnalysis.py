@@ -66,7 +66,7 @@ def plotClassAnalysis(mark_sheet_df, question_paper):
     CourseOutcome_Index = range(len(Cognitive_Outcome_Lables))
 
     # Create the subplots for bar charts and pie charts
-    fig, axs = plt.subplots(3, 2, figsize=(15, 15))
+    fig, axs = plt.subplots(2, 2, figsize=(13, 13))
 
     # Plot for CDs (Bar Chart)
     bars1_cd = axs[0, 0].bar(CognitiveDomain_Index, CognitiveDomain_AverageMarks, bar_width, color='blue', alpha=0.7, label='Average Marks')
@@ -92,19 +92,11 @@ def plotClassAnalysis(mark_sheet_df, question_paper):
     axs[0, 1].set_xticklabels(Cognitive_Outcome_Lables, rotation=45, ha='right')
     axs[0, 1].legend()
 
-    # Plot for CDs (Pie Chart)
-    axs[1, 0].pie(CognitiveDomain_AverageMarks, labels=Cognitive_Domain_Lables, autopct='%1.1f%%', colors=['lightblue', 'lightgreen', 'lightcoral', 'lightskyblue', 'lightpink'], startangle=140)
-    axs[1, 0].set_title('Distribution of Average Marks per CD')
+   
+    axs[1,0].pie(ranges.values(), labels=ranges.keys(), autopct='%1.1f%%', colors=['lightcoral', 'lightyellow', 'lightblue', 'lightgreen'], startangle=140)
+    axs[1, 0].set_title('Percentage of student scored marks in the range of 0-35 ,35-60, 60-80, 80-100')
 
-    # Plot for COs (Pie Chart)
-    axs[1, 1].pie(CourseOutcome_AverageMarks, labels=Cognitive_Outcome_Lables, autopct='%1.1f%%', colors=['lightblue', 'lightgreen', 'lightcoral', 'lightskyblue', 'lightpink'], startangle=140)
-    axs[1, 1].set_title('Distribution of Average Marks per CO')
-
-
-    axs[2,0].pie(ranges.values(), labels=ranges.keys(), autopct='%1.1f%%', colors=['lightcoral', 'lightyellow', 'lightblue', 'lightgreen'], startangle=140)
-    axs[2, 0].set_title('Percentage of student scored marks in the range of 0-35 ,35-60, 60-80, 80-100')
-
-    axs[2, 1].axis('off')
+    axs[1, 1].axis('off')
 
 
 
@@ -117,3 +109,58 @@ def plotClassAnalysis(mark_sheet_df, question_paper):
     img.seek(0)
     plot_url = base64.b64encode(img.getvalue()).decode('utf8')
     return plot_url
+
+
+
+def plotClassAnalysisPieChart(mark_sheet_df, question_paper):
+
+    '''
+    plot_Class_Analisis(mark_sheet_df, qp): plots bar and pie chart for overall class course out come and analysis
+    input : give two DataFrame - > mark_sheet DataFrame, qp
+      DataFrame
+    output : return's image of bar graph and pie chart as -> plot_url
+    '''
+
+    Cognitive_Domain_marks, Course_Outcome_marks, CognitiveDomain_TotalMarks, CourseOutcome_TotalMarks = DataAnalyizer.cognitiveDomainCourseOutcomeAnalysis(mark_sheet_df, question_paper)
+
+    # Compute the average marks per CD
+    CognitiveDomain_AverageMarks = round(Cognitive_Domain_marks.drop(columns='student_usno').sum() / Cognitive_Domain_marks.shape[0])
+
+    # Extract total marks for each CD
+    Total_marks_CogntivDomain = [int(CognitiveDomain_TotalMarks.iloc[i]['Total Marks']) for i in range(len(CognitiveDomain_AverageMarks))]
+
+    # Define categories for CDs
+    Cognitive_Domain_Lables = [f'CognitiveDomain{i + 1}' for i in range(len(CognitiveDomain_AverageMarks))]
+
+    # Compute the average marks per CO
+    CourseOutcome_AverageMarks = round(Course_Outcome_marks.drop(columns='student_usno').sum() / Course_Outcome_marks.shape[0])
+
+    # Extract total marks for each CO
+    Total_marks_CourseOutcome = [int(CourseOutcome_TotalMarks.iloc[i]['Total Marks']) for i in range(len(CourseOutcome_AverageMarks))]
+
+    # Define categories for COs
+    Cognitive_Outcome_Lables = [f'CO{i + 1}' for i in range(len(CourseOutcome_AverageMarks))]
+
+
+    fig, axs = plt.subplots(1, 2, figsize=(12, 12))
+
+
+
+ # Plot for CDs (Pie Chart)
+    axs[0].pie(CognitiveDomain_AverageMarks, labels=Cognitive_Domain_Lables, autopct='%1.1f%%', colors=['lightblue', 'lightgreen', 'lightcoral', 'lightskyblue', 'lightpink'], startangle=140)
+    axs[0].set_title('Distribution of Average Marks per CD')
+
+    # Plot for COs (Pie Chart)
+    axs[1].pie(CourseOutcome_AverageMarks, labels=Cognitive_Outcome_Lables, autopct='%1.1f%%', colors=['lightblue', 'lightgreen', 'lightcoral', 'lightskyblue', 'lightpink'], startangle=140)
+    axs[1].set_title('Distribution of Average Marks per CO')
+
+    # Adjust layout and display the plot
+    plt.tight_layout()
+
+    # Convert the plot to PNG image and base64 encode it
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+    return plot_url
+
