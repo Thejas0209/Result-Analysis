@@ -1,9 +1,17 @@
+'''
+This Program Only Display's the co-cd mapped data
+and total marks of each co-cd 
+
+
+'''
+
+
 from DataAnalyizer import cognitiveDomainCourseOutcomeAnalysis as c
 import pandas as pd
-qp = pd.read_excel(r'../Data/qp_list.xlsx')
-ms = pd.read_excel(r'../Data/inpu.xlsx')
+question_paper_dataframe = pd.read_excel(r'../Data/marks_sheet.xlsx')
+mark_sheet_dataframe = pd.read_excel(r'../Data/qp.xlsx')
 
-cd_result,co_result,cd_ttl,co_ttl = c(qp,ms)
+cd_result,co_result,cd_ttl,co_ttl = c(question_paper_dataframe,mark_sheet_dataframe)
 
 
 co_result['total_marks'] = co_result[['CO1_marks', 'CO2_marks', 'CO3_marks', 'CO4_marks', 'CO5_marks']].sum(axis=1)
