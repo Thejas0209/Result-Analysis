@@ -3,3 +3,6 @@
 # QuestionPaperAnalysis.py returns the analysis of question showing how many questions are there for each course outcome 
 
 # DataAnalyzer returns the dataFrame of the CO-CD mapped to qp_marks_list and  total_marks for CO-CD
+
+# returns  CognitiveDomain_results,CourseOutcome_results,total_marks_CourseDomain,total_marks_CourseOutcome
+
