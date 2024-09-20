@@ -66,7 +66,7 @@ def plotClassAnalysis(mark_sheet_df, question_paper):
     CourseOutcome_Index = range(len(Cognitive_Outcome_Lables))
 
     # Create the subplots for bar charts and pie charts
-    fig, axs = plt.subplots(2, 2, figsize=(13, 13))
+    fig, axs = plt.subplots(2, 2, figsize=(15, 10))
 
     # Plot for CDs (Bar Chart)
     bars1_cd = axs[0, 0].bar(CognitiveDomain_Index, CognitiveDomain_AverageMarks, bar_width, color='blue', alpha=0.7, label='Average Marks')
@@ -142,7 +142,7 @@ def plotClassAnalysisPieChart(mark_sheet_df, question_paper):
     Cognitive_Outcome_Lables = [f'CO{i + 1}' for i in range(len(CourseOutcome_AverageMarks))]
 
 
-    fig, axs = plt.subplots(1, 2, figsize=(12, 12))
+    fig, axs = plt.subplots(1, 2, figsize=(15, 5))
 
 
 

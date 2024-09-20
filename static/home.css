@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f9f9f9;
+    text-align: center; /* Center-aligns all text in the body */
+}
+h1, h2 {
+    color: #333;
+}
+.student-marks, .question-paper {
+    margin-bottom: 30px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    display: block; /* Makes the image a block element */
+    margin: 20px auto; /* Centers the image horizontally */
+}
+p {
+    color: #555;
+    margin: 0 0 20px;
+}
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+a:hover {
+    background-color: #0056b3;
+}
+.page-break {
+    page-break-before: always;
+}

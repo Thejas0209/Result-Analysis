@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import io
 import base64
 
-
 def plotQuestionPaperAnalysis(question_paper):
     '''
     questionPaperAnalyser(QP_df): Plots a graph for Course outCome and Cognative domain of marks 
@@ -16,7 +15,7 @@ def plotQuestionPaperAnalysis(question_paper):
     cogonative_domain = np.unique([int(item) for sublist in [str(x).split(',') for x in question_paper["CD"]] for item in sublist],return_counts=True)
     
     # Ploting the graphs for COs & CDs
-    fig,axs=plt.subplots(1,2)
+    fig,axs=plt.subplots(1,2,figsize=(15, 5))
     axs[0].bar(course_output[0],course_output[1])
     axs[0].set_title("Course outcome analysis")
     axs[0].set_xlabel("Course outcome")
