@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 
-def plotClassAnalysis(mark_sheet_df, question_paper):
+def plotClassAnalysis(mark_sheet_df, question_paper_df):
     '''
     plot_Class_Analisis(mark_sheet_df, qp): plots bar  for overall class course out come and analysis
     input : give two DataFrame - > mark_sheet DataFrame, qp
@@ -11,7 +11,7 @@ def plotClassAnalysis(mark_sheet_df, question_paper):
     output : return's image of bar graph  as -> plot_url
     '''
 
-    Cognitive_Domain_marks, Course_Outcome_marks, CognitiveDomain_TotalMarks, CourseOutcome_TotalMarks = DataAnalyizer.cognitiveDomainCourseOutcomeAnalysis(mark_sheet_df, question_paper)
+    Cognitive_Domain_marks, Course_Outcome_marks, CognitiveDomain_TotalMarks, CourseOutcome_TotalMarks = DataAnalyizer.cognitiveDomainCourseOutcomeAnalysis(mark_sheet_df, question_paper_df)
 
     # Compute the average marks per CD
     CognitiveDomain_AverageMarks = round(Cognitive_Domain_marks.drop(columns='student_usno').sum() / Cognitive_Domain_marks.shape[0])

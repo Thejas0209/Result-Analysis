@@ -11,6 +11,7 @@
     <h2>Class Analysis for MCA</h2>
     <div class="student-marks">
         <h2>Student marks analysis</h2>
+        <h3>Marks evaluation on the basis of course outcome and cogonative domain</h3>
         <img src="data:image/png;base64,{{ images[0] }}" alt="Student Marks Plot">
         <p>The above graphs shows how the student has scored the marks with respect to each cognitive domain, Course outcome and the distribution of marks on the basis of percentage</p>
     </div>
@@ -18,16 +19,21 @@
     <div class="page-break"></div>
 
     <div class="question-paper">
-        <h3>Question Paper Analysis</h3>
+        <h2>Question Paper Analysis</h2>
         <p>Question paper analysis involves evaluating the distribution of questions across different topics and difficulty levels
            to ensure balanced assessments. This process helps identify gaps in content coverage and informs future curriculum planning and teaching strategies.</p>
+        <h3>Marks distribution on the basis of questions</h3>
         <img src="data:image/png;base64,{{ images[1] }}" alt="Question Paper Distribution Plot">
         <p>The above graph shows how the questions are distributed based on course outcome and cognitive domain.</p>
-        
+        <h3>Marks distribution on the basis of marks</h3>
         <img src="data:image/png;base64,{{ images[2] }}" alt="Marks Distribution Plot">
         <p>The above graph shows how the marks are distributed based on course outcome and cognitive domain.</p>
     </div>
 
+    <div class="CO-Marksheet">
+    <h3>Student marks with respect to each course outcome</h3>
+    {{course_outcome_marks_sheet|safe}}
+    </div>
     <a href="{{ url_for('home') }}">Go back</a>
 </body>
 </html>

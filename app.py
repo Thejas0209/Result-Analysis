@@ -7,6 +7,7 @@ from Codes.StudentAnalysis import plotStudentAnalysis
 from Codes.ClassAnalysis import plotClassAnalysis,plotClassAnalysisPieChart
 from Codes.QuestionPaperAnalyser import plotQuestionPaperAnalysis
 from Codes.FileValidator import validate
+from Codes.DisplayData import displayData
 
 app = Flask(__name__)
 app.secret_key = 'Shinota'
@@ -54,12 +55,11 @@ def plot():
         plot_image = plotClassAnalysis(marks_sheet,question_paper)
         question_paper_plot = plotQuestionPaperAnalysis(question_paper)
         qp_pie_chart = plotClassAnalysisPieChart(marks_sheet, question_paper)
-        
+        course_outcome_marks_sheet,cognative_domain_marks_sheet=displayData(marks_sheet, question_paper)
         # Add the class analysis plot and question paper plot to the images list
         images.extend([plot_image, question_paper_plot, qp_pie_chart])
-
     # Return the plots as base64 images to the HTML template
-    return render_template('ClassReport.html', images=images)
+    return render_template('ClassReport.html', images=images,course_outcome_marks_sheet=course_outcome_marks_sheet,cognative_domain_marks_sheet=cognative_domain_marks_sheet)
 
 if __name__ == '__main__':
     app.run(debug=True)
